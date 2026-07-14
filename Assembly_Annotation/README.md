@@ -75,3 +75,24 @@ samtools idxstats aligned_sorted.bam | grep "^Ref1_" | awk '{print $1"\t0\t"$2}'
 samtools view -b -L ref1_regions.bed aligned_sorted.bam > component1-3-4_reads.bam
 
 ```
+
+## Annotation 
+
+Custom repeat libraries were generated for the <i>Floracarus perrepae</i> and bycatch genomes with RepeatModeler2 with LTRStruct enabled. 
+```
+asm="Floracarus_perrepae_v1.fa"
+dfam='/groups/kdlugosch/jessiepelosi/local_prgms/dfam-tetools-latest.sif'
+
+singularity exec $dfam BuildDatabase -name Floracarus $asm
+singularity exec $dfam RepeatModeler -database Floracarus -threads 96 -LTRStruct
+singularity exec $dfam RepeatMasker -pa 96 -norna -lib Floracarus-families.fa -no_is -gff -a -xsmall $asm
+```
+
+The resulting soft-masked genomes were used as input for the BRAKER4 pipeline. We used the predicted proteomes of 18 mite genomes and the Arthopoda ODB12 database as external evidence. 
+```
+snakemake --executor slurm --default-resources slurm_partition=standard mem_mb=120000 \
+slurm_account=kdlugosch --cores 48 --jobs 48 --use-singularity \
+--singularity-args "-B /xdisk -B /groups" --singularity-prefix .singularity_cache \
+--snakefile /groups/kdlugosch/jessiepelosi/local_prgms/BRAKER4/Snakefile \
+--latency-wait 120 --restart-times 3
+```
