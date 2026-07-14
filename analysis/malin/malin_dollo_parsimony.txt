@@ -1,0 +1,99 @@
+# MALIN ca.umontreal.iro.evolution.malin.ui.introns.DolloDisplay
+# Intron table: Table (47866 sites)
+# ---- Parsimony presence at nodes 
+# Node	present
+Dermatophagoides	3948
+Psovi	3623
+Sarcoptes	4246
+Blomia	4583
+Tyrophagus	4959
+Oppia	5449
+Hypochthonius	4853
+Panoychus	4057
+Tetranychus	1909
+Brevipalpus	4071
+Dinothrombium	3998
+Leptotrombium	3728
+Halotydeus	3758
+bycatch	1899
+RARGMITE	425
+Aculops	297
+Aculus	336
+Floracarus	347
+Setoptus	1131
+Fragariocoptes	843
+Varroa	7821
+Stratiolaelaps	7771
+Dermanyssus	7433
+Galendromus	7016
+$24_noname	3241
+$25_noname	4148
+$26_noname	3802
+$27_noname	5228
+$28_noname	4723
+$29_noname	6127
+$30_noname	2952
+$31_noname	3953
+$32_noname	3962
+$33_noname	5200
+$34_noname	2999
+$35_noname	5498
+$36_noname	5751
+$37_noname	310
+$38_noname	350
+$39_noname	405
+$40_noname	767
+$41_noname	882
+$42_noname	2373
+$43_noname	6377
+$44_noname	6193
+$45_noname	5234
+$46_noname	1790
+# ---- Parsimony changes on branches 
+# Branch	gain	loss
+Dermatophagoides	1515	808
+Psovi	1349	967
+Sarcoptes	1576	1478
+Blomia	1605	824
+Tyrophagus	2527	1370
+Oppia	2079	1353
+Hypochthonius	1588	1458
+Panoychus	1134	29
+Tetranychus	1877	2920
+Brevipalpus	1237	1119
+Dinothrombium	1055	1019
+Leptotrombium	1075	1309
+Halotydeus	1192	433
+bycatch	888	1988
+RARGMITE	179	64
+Aculops	104	117
+Aculus	162	176
+Floracarus	174	232
+Setoptus	510	146
+Fragariocoptes	507	431
+Varroa	2255	811
+Stratiolaelaps	2653	1259
+Dermanyssus	3034	1794
+Galendromus	2532	750
+$24_noname	65	972
+$25_noname	118	1198
+$26_noname	76	1502
+$27_noname	419	1318
+$28_noname	153	1557
+$29_noname	860	484
+$30_noname	2	1003
+$31_noname	184	1431
+$32_noname	114	1352
+$33_noname	276	574
+$34_noname	23	2522
+$35_noname	364	617
+$36_noname	3426	48
+$37_noname	2	42
+$38_noname	8	63
+$39_noname	6	483
+$40_noname	28	143
+$41_noname	49	1540
+$42_noname	583	0
+$43_noname	629	445
+$44_noname	1165	206
+$45_noname	3444	0
