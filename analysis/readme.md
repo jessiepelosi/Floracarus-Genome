@@ -10,14 +10,24 @@ We used OrthoFinder v3.1.5 to identify low-copy nuclear orthologs among 24 taxa.
 We used only the longest isoform per gene identified with AGAT v1.4.2 as input.
 
 ```
+agat_sp_keep_longest_isoform.pl --gff $taxon.gff -o $taxon.longest.gff
+gffread -g $taxon.genome.fasta -y $taxon.longest.pep $taxon.longest.gff
+
+orthofinder -f all_pep/
 ```
 
-Single-copy orthogroups present in at least 75% of taxa were aligned with MACSE v2.07 and sites with less than 50% taxon occupancy were removed with trimAl v1.3.
+The corresponding coding sequences for single-copy orthogroups present in at least 75% of taxa were aligned with MACSE v2.07 and sites with less than 50% taxon occupancy were removed with trimAl v1.3.
 ```
+java -Xmx2G -jar $macse -prog alignSequences -seq $orthogroup.fa
+trimal -gt 0.5 -in "$orthogroup"_NT.fa -out "$orthogroup"_NT.fa.trim
 ```
 
 We then estimated the best substitution model with ModelFinderPlus and built maximum-likelihood phylogenies with IQTREE v3.0.1 with 1000 ultrafast bootstraps. These gene trees were input to ASTRAL IV to generate a species tree under the multi-species coalescent.
+
 ```
+iqtree3 -s "$orthogroup"_NT.fa.trim -B 1000 -alrt 1000 -m MFP -T 2 --redo
+cat *.treefile > gene_trees.tre
+astral -in gene_tree.tre -out species_tree.tre
 ```
 
 To first determine whether there was phylogenetic signal in genome size across these mites, we used the ‘phylosig’ function from phytools v2.5-2 to estimate and assess the significance of Pagel’s λ with 5000 simulations for the randomization test and 100 iteration for likelihood optimization of log(genome size) with the species tree. See R script. 
