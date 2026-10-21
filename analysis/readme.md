@@ -15,6 +15,14 @@ bedtools complement -i genes.sorted.bed -g "$genome".fai > intergenic.bed
 awk '{print $0, $3-$2}' intergenic.bed > "$sp"_intergenic_dist.txt
 ```
 
+To calculate intron lengths by adding introns to the existing GFFs with AGAT and then extracting their lengths. 
+
+```
+apptainer exec $agat agat_sp_add_introns.pl --gff $long_gff --out $intron_gff
+grep -P 'intron\t' $intron_gff | cut -f 1,4,5 > "$intron_gff".bed
+awk '{print $0, $3-$2}' "$intron_gff".bed > "$sp"_intron_len.txt
+```
+
 ## Phylogenomics of Genome Downsizing 
 
 We used OrthoFinder v3.1.5 to identify low-copy nuclear orthologs among 24 taxa. 
