@@ -2,7 +2,18 @@
 
 ## Synteny 
 
-We used SynMap2 within CoGe to identify syntenic gene pairs between Eriophyoidae mite genomes (Aculops, Floracarus, and RARGMITE). Using the output from SynMap2, we calculated the number of syntenic blocks, average number of genes per syntenic block, and the number of syntenic gene pairs for each comparison. 
+We used SynMap2 within CoGe to identify syntenic gene pairs between Eriophyoidae mite genomes (<i>Aculops, Floracarus,</i> and RARGMITE). Using the output from SynMap2, we calculated the number of syntenic blocks, average number of genes per syntenic block, and the number of syntenic gene pairs for each comparison. 
+
+## Computation of Intergenic Distances
+
+We used bedtools to calculate the distance between genes for each of the mite genomes. 
+
+```
+grep -P 'gene\t' $gff | cut -f 1,4,5 > "$gff".gene.bed
+bedtools sort -i "$gff".gene.bed -g "$genome".fai > genes.sorted.bed
+bedtools complement -i genes.sorted.bed -g "$genome".fai > intergenic.bed
+awk '{print $0, $3-$2}' intergenic.bed > "$sp"_intergenic_dist.txt
+```
 
 ## Phylogenomics of Genome Downsizing 
 
